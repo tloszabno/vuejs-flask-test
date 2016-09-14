@@ -9,9 +9,11 @@ new Vue({
     },
     methods: {
         fetch: function() {
-            this.$http.get('priorities').success(function(priorities) {
-                this.$set('priorities', priorities.priorities);
+            this.$http.get('priorities').then((response) => {
+                this.$set('priorities', response.data.priorities);
                 this.$set('loaded', true);
+            }, (response) => {
+                // error callback
             });
         }
     }
